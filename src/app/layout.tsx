@@ -6,7 +6,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Java Developer Learning Roadmap',
+  title: 'All in One Roadmaps',
   description: 'Master Java Development with a comprehensive, structured learning path designed by experts.',
 }
 
