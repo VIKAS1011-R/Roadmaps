@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { verifyPassword, validateEmail, generateToken } from '@/lib/auth';
-import { UserDocument, LoginCredentials } from '@/lib/models/User';
+import { getDatabase } from '../../../../lib/mongodb';
+import { verifyPassword, validateEmail, generateToken } from '../../../../lib/auth';
+import { UserDocument, LoginCredentials } from '../../../../lib/models/User';
 
 export async function POST(request: NextRequest) {
   try {

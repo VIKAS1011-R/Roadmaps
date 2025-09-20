@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ProgrammingLanguage, Phase, Topic } from '@/lib/types';
+import { ProgrammingLanguage, Phase, Topic } from '../../lib/types';
 
 interface LanguageFormProps {
   language?: ProgrammingLanguage | null;

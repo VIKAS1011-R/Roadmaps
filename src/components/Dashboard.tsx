@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
-import { useAuth } from '@/hooks/useAuth';
-import { TopicStatus, Topic } from '@/lib/types';
+import { useAuth } from '../hooks/useAuth';
+import { TopicStatus, Topic } from '../lib/types';
 
 const statusIcons = {
   'pending': '⏳',

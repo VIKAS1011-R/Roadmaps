@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/hooks/useAuth';
-import { ProgrammingLanguage } from '@/lib/types';
+import { useAuth } from '../../hooks/useAuth';
+import { ProgrammingLanguage } from '../../lib/types';
 import LanguageList from './LanguageList';
 import LanguageForm from './LanguageForm';
 

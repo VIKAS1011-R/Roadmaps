@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '../../../hooks/useAuth';
 import { useRouter } from 'next/navigation';
-import { TopicStatus, Topic } from '@/lib/types';
+import { TopicStatus, Topic } from '../../../lib/types';
 
 export const dynamic = 'force-dynamic';
 

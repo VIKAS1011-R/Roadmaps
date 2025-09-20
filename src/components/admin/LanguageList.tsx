@@ -1,6 +1,6 @@
 'use client';
 
-import { ProgrammingLanguage } from '@/lib/types';
+import { ProgrammingLanguage } from '../../lib/types';
 
 interface LanguageListProps {
   languages: ProgrammingLanguage[];

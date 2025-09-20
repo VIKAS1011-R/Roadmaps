@@ -1,7 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { verifyAdminAuth } from '@/lib/middleware/adminAuth';
-import { ProgrammingLanguageDocument, UpdateLanguageData } from '@/lib/models/ProgrammingLanguage';
+import { NextRequest, NextResponse } from "next/server";
+import { getDatabase } from "../../../../../lib/mongodb";
+import { verifyAdminAuth } from "../../../../../lib/middleware/adminAuth";
+import {
+  ProgrammingLanguageDocument,
+  UpdateLanguageData,
+} from "../../../../../lib/models/ProgrammingLanguage";
 
 // Get specific programming language
 export async function GET(
@@ -18,22 +21,23 @@ export async function GET(
 
   try {
     const db = await getDatabase();
-    const languagesCollection = db.collection<ProgrammingLanguageDocument>('programming_languages');
+    const languagesCollection = db.collection<ProgrammingLanguageDocument>(
+      "programming_languages"
+    );
 
     const language = await languagesCollection.findOne({ slug: params.slug });
     if (!language) {
       return NextResponse.json(
-        { error: 'Programming language not found' },
+        { error: "Programming language not found" },
         { status: 404 }
       );
     }
 
     return NextResponse.json({ language });
-
   } catch (error) {
-    console.error('Get language error:', error);
+    console.error("Get language error:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }
@@ -56,24 +60,31 @@ export async function PUT(
     const updateData: UpdateLanguageData = await request.json();
 
     const db = await getDatabase();
-    const languagesCollection = db.collection<ProgrammingLanguageDocument>('programming_languages');
+    const languagesCollection = db.collection<ProgrammingLanguageDocument>(
+      "programming_languages"
+    );
 
-    const existingLanguage = await languagesCollection.findOne({ slug: params.slug });
+    const existingLanguage = await languagesCollection.findOne({
+      slug: params.slug,
+    });
     if (!existingLanguage) {
       return NextResponse.json(
-        { error: 'Programming language not found' },
+        { error: "Programming language not found" },
         { status: 404 }
       );
     }
 
     const updateFields: Partial<ProgrammingLanguageDocument> = {
-      updatedAt: new Date()
+      updatedAt: new Date(),
     };
 
     if (updateData.name) {
       updateFields.name = updateData.name;
       // Update slug if name changed
-      updateFields.slug = updateData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      updateFields.slug = updateData.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
     }
 
     if (updateData.description) {
@@ -85,15 +96,15 @@ export async function PUT(
       let totalTopics = 0;
       let topicId = 1;
 
-      const processedPhases = updateData.phases.map(phase => ({
+      const processedPhases = updateData.phases.map((phase) => ({
         ...phase,
-        topics: phase.topics.map(topic => {
+        topics: phase.topics.map((topic) => {
           totalTopics++;
           return {
             ...topic,
-            id: topicId++
+            id: topicId++,
           };
-        })
+        }),
       }));
 
       updateFields.phases = processedPhases;
@@ -107,22 +118,23 @@ export async function PUT(
 
     if (result.matchedCount === 0) {
       return NextResponse.json(
-        { error: 'Programming language not found' },
+        { error: "Programming language not found" },
         { status: 404 }
       );
     }
 
-    const updatedLanguage = await languagesCollection.findOne({ slug: updateFields.slug || params.slug });
+    const updatedLanguage = await languagesCollection.findOne({
+      slug: updateFields.slug || params.slug,
+    });
 
     return NextResponse.json({
       language: updatedLanguage,
-      message: 'Programming language updated successfully'
+      message: "Programming language updated successfully",
     });
-
   } catch (error) {
-    console.error('Update language error:', error);
+    console.error("Update language error:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }
@@ -143,25 +155,26 @@ export async function DELETE(
 
   try {
     const db = await getDatabase();
-    const languagesCollection = db.collection<ProgrammingLanguageDocument>('programming_languages');
+    const languagesCollection = db.collection<ProgrammingLanguageDocument>(
+      "programming_languages"
+    );
 
     const result = await languagesCollection.deleteOne({ slug: params.slug });
 
     if (result.deletedCount === 0) {
       return NextResponse.json(
-        { error: 'Programming language not found' },
+        { error: "Programming language not found" },
         { status: 404 }
       );
     }
 
     return NextResponse.json({
-      message: 'Programming language deleted successfully'
+      message: "Programming language deleted successfully",
     });
-
   } catch (error) {
-    console.error('Delete language error:', error);
+    console.error("Delete language error:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }

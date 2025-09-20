@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { verifyAdminAuth } from '@/lib/middleware/adminAuth';
-import { ProgrammingLanguageDocument, CreateLanguageData } from '@/lib/models/ProgrammingLanguage';
+import { getDatabase } from '../../../../lib/mongodb';
+import { verifyAdminAuth } from '../../../../lib/middleware/adminAuth';
+import { ProgrammingLanguageDocument, CreateLanguageData } from '../../../../lib/models/ProgrammingLanguage';
 
 // Get all programming languages (admin view with full details)
 export async function GET(request: NextRequest) {

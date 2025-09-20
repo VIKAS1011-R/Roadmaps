@@ -1,8 +1,8 @@
 'use client';
 
-import { useAuth, AuthProvider } from '@/hooks/useAuth';
-import LandingPage from '@/components/LandingPage';
-import AuthPage from '@/components/AuthPage';
+import { useAuth, AuthProvider } from '../hooks/useAuth';
+import LandingPage from '../components/LandingPage';
+import AuthPage from '../components/AuthPage';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 

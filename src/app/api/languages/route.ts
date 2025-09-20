@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { ProgrammingLanguageDocument } from '@/lib/models/ProgrammingLanguage';
+import { getDatabase } from '../../../lib/mongodb';
+import { ProgrammingLanguageDocument } from '../../../lib/models/ProgrammingLanguage';
 
 // Get all programming languages (public endpoint)
 export async function GET(request: NextRequest) {

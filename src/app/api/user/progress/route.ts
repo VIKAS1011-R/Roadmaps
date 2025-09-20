@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ObjectId } from 'mongodb';
-import { getDatabase } from '@/lib/mongodb';
-import { verifyToken } from '@/lib/auth';
-import { UserDocument, UpdateProgressData } from '@/lib/models/User';
-import { TopicStatus } from '@/lib/types';
+import { getDatabase } from '../../../../lib/mongodb';
+import { verifyToken } from '../../../../lib/auth';
+import { UserDocument, UpdateProgressData } from '../../../../lib/models/User';
+import { TopicStatus } from '../../../../lib/types';
 
 // Get user progress
 export async function GET(request: NextRequest) {
